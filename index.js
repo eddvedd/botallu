@@ -66,7 +66,7 @@ try {
 	    }
 	    //commands
 	    if (message.content === "!commands") {
-	        message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn");
+	        message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll");
 	    }
 	    if (message.content.toLowerCase() === "!ping") {
 	        message.reply("Pong!");
@@ -132,11 +132,11 @@ try {
 		    	var mess = "Players ready: ";
 		    	var mess2 = readyArray.toString();
 		    	var mess3 = mess + mess2;
-		    	MsgToChannel(mess3);
+		    	message.channel.send(mess3)
 	    	}
 	    	else
 	    	{
-	    		MsgToChannel("No players are ready!");
+	    		message.channel.send("No players are ready!");
 	    	}
 	    }
 
@@ -247,7 +247,7 @@ try {
 	    if (message.content.startsWith("!poll")) 
 	    {
 	    	var pollQuestion = message.content.replace("!poll", "").trim();
-	    	MsgToChannel("New poll: " + pollQuestion + " Use 👍 or 👎 to vote.");
+	    	message.channel.send("New poll: " + pollQuestion + " Use 👍 or 👎 to vote.");
 	    }			
 	}
 	else
@@ -268,7 +268,7 @@ catch(e) {
 client.on("presenceUpdate", function (oldMember, newMember) {
 if(newMember.presence.game !== null) {    
 	if (newMember.presence.game.streaming) {
-		MsgToChannel(newMember.presence.game.url);				
+		message.channel.send(newMember.presence.game.url);				
 	}
 }	
 });
@@ -280,29 +280,6 @@ function shuffleArray(a) {
         let j = Math.floor(Math.random() * i);
         [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
-}
-
-//Send message to channel
-function MsgToChannel(msg) {
-	var _channel = client.channels.array();
-	for (var i = _channel.length - 1; i >= 0; i--) {
-		//181823407397011456 main serv
-		//316735745538785282 test serv
-		if (_channel[i].id === "181823407397011456") {
-		   _channel[i].send(msg);	   	
-		   }	   
-	    }		
-}
-
-//Send message to channel, not implemented
-function TtsToChannel(msg) {
-	var _channel = client.channels.array();
-	for (var i = _channel.length - 1; i >= 0; i--) {
-		//181823407397011456 main serv
-		if (_channel[i].id === "181823407397011456") {
-		   _channel[i].sendTTSMessage(msg);	   	
-		   }	
-	    }		
 }
 
 //get channel
@@ -318,8 +295,7 @@ function FetchChannel() {
 }
 
 client.on("ready", () => {
-    console.log(chalk.cyanBright("Allu is online and ready!"));
-    //MsgToChannel("Krappa");   	    	    
+    console.log(chalk.cyanBright("Allu is online and ready!"));  	    	    
 })
 
 client.login("MjUzMDYxMDk4MjY4MzkzNDcz.Cx7BDw.g5-7vUBsgrL_lv1UtV8bpeeZZ60");
