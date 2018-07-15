@@ -283,22 +283,12 @@ function shuffleArray(a) {
 }
 
 //get channel
-function FetchChannel() {
-	var _channel = client.channels.array();
-	for (var i = _channel.length - 1; i >= 0; i--) {
-		//181823407397011456 main serv
-		//316735745538785282 test serv
-		if (_channel[i].id === "181823407397011456") {
-		   return _channel[i];	   	
-		   }	   
-	    }		
-}
 
 client.on("ready", () => {
     console.log(chalk.cyanBright("Allu is online and ready!"));  	    	    
 })
 
-client.login("MjUzMDYxMDk4MjY4MzkzNDcz.Cx7BDw.g5-7vUBsgrL_lv1UtV8bpeeZZ60");
+client.login("");
 client.on('error', (error) => {
 	console.log(chalk.gray("///////ERROR////////"));
 	console.log(chalk.whiteBright(error.message));
@@ -309,6 +299,6 @@ client.on('error', (error) => {
 		client.destroy();
 		console.log(chalk.greenBright("destroyed..."));
 		console.log(chalk.greenBright("reconnecting..."));
-		client.login("MjUzMDYxMDk4MjY4MzkzNDcz.Cx7BDw.g5-7vUBsgrL_lv1UtV8bpeeZZ60");				
+		client.login("");				
 	}, 60000);
 })		    	
