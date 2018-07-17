@@ -5,8 +5,8 @@ The master of all bots, Bot Allu
 
 ### PREREQUISITE(S)
 You need to have Node.JS installed. https://nodejs.org/en/
+#### Install the following packages:
 <ul>
-  <li>Install the following packages:</li>
   <li>Discord.js - "npm install discord.js" in command prompt.</li>
   <li>Chalk - "npm install chalk" </li>
   <li>dateformat - "npm install dateformat" </li>
