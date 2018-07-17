@@ -1,7 +1,7 @@
 # botallu
 The master of all bots, Bot Allu
 ## Usability
-type !commands to see all commands
+Type !commands to see all commands
 <ul>
   <li>ready check</li>
   <li>team randomizer for inhouse</li>
