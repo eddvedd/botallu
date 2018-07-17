@@ -1,4 +1,4 @@
-const alluCommand = require('./commands');
+const command = require('./commands');
 
 module.exports = {
 	handleMessage: function(message) {
@@ -7,90 +7,90 @@ module.exports = {
 		if (message.author.bot === false) {
 
 			if (message.content.includes ("clips.twitch.tv")) {
-				alluCommand.saveTwitchHighlight(message);		
+				command.saveTwitchHighlight(message);		
 			}
 			//@allu response 
 		    if (message.content.includes ("253061098268393473")) {
-		    	alluCommand.alluReply(message);
+		    	command.alluReply(message);
 		    }
 		    //commands
 		    if (message.content === "!commands") {
-		    	alluCommand.commands(message);
+		    	command.commands(message);
 		    }
 
 		    if (message.content === "!ping") {
-		        alluCommand.ping(message);
+		        command.ping(message);
 		    }
 
 		    if (message.content === "!roll") {
-		        alluCommand.roll(message);
+		        command.roll(message);
 		    }
 
 		    if (message.content === "!flip") {
-		    	alluCommand.roll(message);
+		    	command.roll(message);
 		    }
 
 		    if (message.content === "!gather") {
-		    	alluCommand.gather(message);
+		    	command.gather(message);
 		    }
 
 		    if (message.content === "!ready") 
 		    {
-		    	alluCommand.ready(message); 	
+		    	command.ready(message); 	
 		    }
 
 		    if (message.content === "!unready") 
 		    {
-		    	alluCommand.unready(message);  	
+		    	command.unready(message);  	
 		    }
 
 		    if (message.content === "!checkready") 
 		    {
-		    	alluCommand.checkready(message);
+		    	command.checkready(message);
 		    }
 
 		    if (message.content === "!clearready") 
 		    {
-		    	alluCommand.clearready(message);
+		    	command.clearready(message);
 		    }
 
 		    if (message.content.startsWith("!remindme")) 
 		    {
-		    	alluCommand.remindme(message);
+		    	command.remindme(message);
 		    }	    
 
 		    //Read highlights.txt and reply content
 		    if (message.content === "!highlights") {
-		    	alluCommand.highlights(message);
+		    	command.highlights(message);
 		    }
 
 		    //Maps function
 		    if(message.content.startsWith("!maps"))
 		    {
-		    	alluCommand.maps(message);
+		    	command.maps(message);
 		    }   
 
 		//Create teams
 		    if(message.content.startsWith("!inhouse"))
 		    {
-		    	alluCommand.inhouse(message);
+		    	command.inhouse(message);
 		    }
 
 		    if (message.content.startsWith("!poll")) 
 		    {
-		    	alluCommand.poll(message);
+		    	command.poll(message);
 		    }			
 		}
 		else
 		{
-			alluCommand.alluception(message);
+			command.alluception(message);
 		} 
 	},
-	
+
 	handlePresence: function(client, oldMember, newMember) {
 		if(newMember.presence.game !== null) {    
 			if (newMember.presence.game.streaming) {
-				alluCommand.presenceStreaming(client, newMember);				
+				command.presenceStreaming(client, newMember);				
 			}
 		}	
 	}
