@@ -1,7 +1,6 @@
 
 //Bot Allu
 var Discord = require("discord.js");
-var dateFormat = require('dateformat');
 var chalk = require('chalk');
 const handler = require('./handler');
 const config = require("./config.json");
