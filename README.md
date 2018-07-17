@@ -1,5 +1,16 @@
 # botallu
 The master of all bots, Bot Allu
+## Usability
+<ul>
+  <li>ready check</li>
+  <li>team randomizer</li>
+  <li>stream alert</li>
+  <li>twitch highlight autosave</li>
+  <li>roll 1-100</li>
+  <li>remindme function</li>
+  <li>CSGO random map selector</li>
+  <li>yes/no polls</li>
+</ul>
 
 ## Setup
 
