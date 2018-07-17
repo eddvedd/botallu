@@ -5,10 +5,10 @@ module.exports = {
 	message.content = message.content.toLowerCase();
 	//Save twitch highlight links to textfile
 		if (message.author.bot === false) {
+
 			if (message.content.includes ("clips.twitch.tv")) {
 				alluCommand.saveTwitchHighlight(message);		
 			}
-
 			//@allu response 
 		    if (message.content.includes ("253061098268393473")) {
 		    	alluCommand.alluReply(message);
@@ -17,17 +17,20 @@ module.exports = {
 		    if (message.content === "!commands") {
 		    	alluCommand.commands(message);
 		    }
-		    if (message.content.toLowerCase() === "!ping") {
+
+		    if (message.content === "!ping") {
 		        alluCommand.ping(message);
 		    }
-		    if (message.content.toLowerCase() === "!roll") {
+
+		    if (message.content === "!roll") {
 		        alluCommand.roll(message);
 		    }
-		    if (message.content.toLowerCase() === "!flip") {
+
+		    if (message.content === "!flip") {
 		    	alluCommand.roll(message);
 		    }
 
-		    if (message.content.toLowerCase() === "!gather") {
+		    if (message.content === "!gather") {
 		    	alluCommand.gather(message);
 		    }
 
@@ -51,13 +54,13 @@ module.exports = {
 		    	alluCommand.clearready(message);
 		    }
 
-		    if (message.content.toLowerCase().startsWith("!remindme")) 
+		    if (message.content.startsWith("!remindme")) 
 		    {
 		    	alluCommand.remindme(message);
 		    }	    
 
 		    //Read highlights.txt and reply content
-		    if (message.content.toLowerCase() === "!highlights") {
+		    if (message.content === "!highlights") {
 		    	alluCommand.highlights(message);
 		    }
 
@@ -83,6 +86,7 @@ module.exports = {
 			alluCommand.alluception(message);
 		} 
 	},
+	
 	handlePresence: function(client, oldMember, newMember) {
 		if(newMember.presence.game !== null) {    
 			if (newMember.presence.game.streaming) {
