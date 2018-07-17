@@ -3,7 +3,7 @@ The master of all bots, Bot Allu
 ## Usability
 <ul>
   <li>ready check</li>
-  <li>team randomizer</li>
+  <li>team randomizer for inhouse</li>
   <li>stream alert</li>
   <li>twitch highlight autosave</li>
   <li>roll 1-100</li>
