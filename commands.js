@@ -8,8 +8,8 @@ var readyArray = [];
 
 
 module.exports = {
-	saveTwitchHighlight: function(message) {
-
+	saveTwitchHighlight: function(message) 
+{
 		var str = message.content;
 		var data = "";
 		var re = new RegExp("^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$", "g");
@@ -175,7 +175,7 @@ module.exports = {
        					returnString = returnString + dataArray[j] + " ";
        					j--
 					}
-					message.reply(returnString);       				     				       				
+					message.author.send(returnString);       				     				       				
        			}  
        			catch(err)  {
        				console.log(chalk.red(err));
