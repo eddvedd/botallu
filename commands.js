@@ -3,13 +3,13 @@ var chalk = require('chalk');
 var Discord = require("discord.js");
 const config = require("./config.json");
 var dateFormat = require('dateformat');
+var lastDeletedMessage = "";
 var path = config.highlights;
 var readyArray = [];
 
 
 module.exports = {
-	saveTwitchHighlight: function(message) 
-{
+	saveTwitchHighlight: function(message) {
 		var str = message.content;
 		var data = "";
 		var re = new RegExp("^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$", "g");
@@ -55,7 +55,7 @@ module.exports = {
 	},
 
 	commands: function(message) {
-		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll");
+		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll !checkdelete");
 	},
 
 	ping: function(message) {
@@ -231,6 +231,10 @@ module.exports = {
     	message.channel.send("New poll: " + pollQuestion + " Use 👍 or 👎 to vote.");
 	},
 
+    checkDelete: function(message) {
+        message.channel.send(lastDeletedMessage);
+    },
+
 	alluception: function(message) {
 		console.log(chalk.greenBright("alluception(" + message.content + ")"));
 		if (message.content.toLowerCase().startsWith("new poll")) {
@@ -241,6 +245,12 @@ module.exports = {
 
     presenceStreaming: function(client, newMember) {
         MsgToChannel(newMember.presence.game.url, client);
+    },
+
+    deletedMessage: function(message) {
+        console.log(chalk.redBright("This message was deleted:"));
+        console.log(chalk.cyanBright(`${message.author.username}: ${message.content}`));
+        lastDeletedMessage = `${message.author.username}: ${message.content}`;
     }
 }
 

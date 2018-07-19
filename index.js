@@ -21,11 +21,11 @@ client.on("presenceUpdate", function (oldMember, newMember) {
 });
 
 client.on("ready", () => {
+	client.user.setActivity('Skynet', {type: 'PLAYING'} );
     console.log(chalk.cyanBright("Allu is online and ready!"));
     console.log(chalk.magentaBright(client.readyAt));
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);		    	    
 })
-
 
 client.on('error', (error) => {
 	console.log(chalk.gray("///////ERROR////////"));
@@ -39,6 +39,10 @@ client.on('error', (error) => {
 		console.log(chalk.greenBright("reconnecting..."));
 		client.login(config.token);				
 	}, 60000);
+})
+
+client.on("messageDelete", (message) => {
+	handler.handleDelete(message);
 })
 
 client.login(config.token);		    	

@@ -54,6 +54,11 @@ module.exports = {
 		    	command.clearready(message);
 		    }
 
+		    if (message.content === "!checkdelete") 
+		    {
+		    	command.checkDelete(message);
+		    }
+
 		    if (message.content.startsWith("!remindme")) 
 		    {
 		    	command.remindme(message);
@@ -93,5 +98,9 @@ module.exports = {
 				command.presenceStreaming(client, newMember);				
 			}
 		}	
+	},
+
+	handleDelete: function(message) {
+		command.deletedMessage(message);
 	}
 }
