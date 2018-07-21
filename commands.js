@@ -251,6 +251,10 @@ module.exports = {
         console.log(chalk.redBright("This message was deleted:"));
         console.log(chalk.cyanBright(`${message.author.username}: ${message.content}`));
         lastDeletedMessage = `${message.author.username}: ${message.content}`;
+        var randomNr = (Math.floor(Math.random() * 11));
+        if (randomNr > 5) {
+            message.channel.send(":eyes:");
+        }
     }
 }
 
@@ -261,7 +265,7 @@ function shuffleArray(a) {
     }
 }
 
-function MsgToChannel(msg, client) {
+function MsgToChannel(msg) {
     var _channel = client.channels.array();
     for (var i = _channel.length - 1; i >= 0; i--) {
         if (_channel[i].id === "181823407397011456") {

@@ -45,4 +45,19 @@ client.on("messageDelete", (message) => {
 	handler.handleDelete(message);
 })
 
+client.on("typingStart", (channel, user) => {
+	if (user.bot === false) {
+		var randomNr = (Math.floor(Math.random() * 11));
+
+		if (randomNr === 1) {
+			channel.startTyping(1);
+			console.log(chalk.magentaBright("Allu started typing..."))
+			setTimeout(function()
+			{ 
+				channel.stopTyping(true);
+			}, 10000);			
+		}
+	}
+})
+
 client.login(config.token);		    	

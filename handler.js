@@ -10,7 +10,7 @@ module.exports = {
 				command.saveTwitchHighlight(message);		
 			}
 			//@allu response 
-		    if (message.content.includes ("253061098268393473")) {
+		    if (message.content.includes ("468006950240649216")) {
 		    	command.alluReply(message);
 		    }
 		    //commands
