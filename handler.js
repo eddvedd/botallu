@@ -1,4 +1,5 @@
 const command = require('./commands');
+const myanimelist = require('./myanimelist');
 
 module.exports = {
 	handleMessage: function(message) {
@@ -27,7 +28,7 @@ module.exports = {
 		    }
 
 		    if (message.content === "!flip") {
-		    	command.roll(message);
+		    	command.flip(message);
 		    }
 
 		    if (message.content === "!gather") {
@@ -84,7 +85,11 @@ module.exports = {
 		    if (message.content.startsWith("!poll")) 
 		    {
 		    	command.poll(message);
-		    }			
+		    }
+		    //MyAnimeList
+		    if (message.content.startsWith("!anime")) {
+		    	myanimelist.searchAnime(message);
+		    }		    			
 		}
 		else
 		{

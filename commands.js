@@ -55,7 +55,7 @@ module.exports = {
 	},
 
 	commands: function(message) {
-		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll !checkdelete");
+		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll !checkdelete, !anime x");
 	},
 
 	ping: function(message) {
@@ -265,7 +265,7 @@ function shuffleArray(a) {
     }
 }
 
-function MsgToChannel(msg) {
+function MsgToChannel(msg, client) {
     var _channel = client.channels.array();
     for (var i = _channel.length - 1; i >= 0; i--) {
         if (_channel[i].id === "181823407397011456") {
