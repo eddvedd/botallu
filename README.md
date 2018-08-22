@@ -11,6 +11,7 @@ Type !commands to see all commands
   <li>remindme function</li>
   <li>CSGO random map selector</li>
   <li>yes/no polls</li>
+  <li>MyAnimeList search</li>
 </ul>
 
 ## Setup
