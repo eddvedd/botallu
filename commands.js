@@ -1,6 +1,5 @@
 var fs = require("fs");
 var chalk = require('chalk');
-var Discord = require("discord.js");
 const config = require("./config.json");
 var dateFormat = require('dateformat');
 var lastDeletedMessage = "";
@@ -55,7 +54,7 @@ module.exports = {
 	},
 
 	commands: function(message) {
-		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll !checkdelete, !anime x");
+		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll !checkdelete, !anime x, !manga x");
 	},
 
 	ping: function(message) {

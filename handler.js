@@ -89,7 +89,11 @@ module.exports = {
 		    //MyAnimeList
 		    if (message.content.startsWith("!anime")) {
 		    	myanimelist.searchAnime(message);
-		    }		    			
+		    }
+
+		    if (message.content.startsWith("!manga")) {
+		    	myanimelist.searchManga(message);
+		    }				    		    			
 		}
 		else
 		{
