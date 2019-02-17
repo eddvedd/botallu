@@ -81,7 +81,8 @@ module.exports = {
 	},
 
 	gather: function(message) {
-		message.reply("@RUFFBOYS, come play CSGO")
+		var role = message.guild.roles.find(role => role.name.toLowerCase() === "ruffboys");
+        message.channel.send("<@&" + role.id +"> come play :)");
 	},
 
 	ready: function(message) {
