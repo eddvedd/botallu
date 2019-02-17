@@ -63,7 +63,15 @@ module.exports = {
 		    if (message.content.startsWith("!remindme")) 
 		    {
 		    	command.remindme(message);
-		    }	    
+		    }
+
+		    if (message.content.startsWith("!joinrole")) {
+		        command.joinRole(message);
+		    }
+
+		    if (message.content.startsWith("!leaverole")) {
+		        command.leaveRole(message);
+		    }  		        	
 
 		    //Read highlights.txt and reply content
 		    if (message.content === "!highlights") {

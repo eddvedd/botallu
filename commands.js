@@ -258,6 +258,54 @@ module.exports = {
         if (randomNr > 5) {
             message.channel.send(":eyes:");
         }
+    },
+
+    joinRole: function(message) {
+        var content = message.content.toLowerCase();
+        var acceptedRoles = ["ruffboys"];
+        var requestedRole = content.replace("!joinrole ", "");
+        if (message.member.roles.exists('name', requestedRole.toUpperCase())) {
+            message.reply("You're already a member of this role, perkele");
+        }
+        else {
+            if (acceptedRoles.includes(requestedRole)) {
+                try {
+                    var role = message.guild.roles.find(role => role.name.toLowerCase() === requestedRole);
+                    message.member.addRole(role);
+                    message.reply("You've beeen added to " + role.name);
+                }
+                catch(err) {
+                    console.log(chalk.red("joinRole error: " + err.message));
+                }
+            }
+            else {
+                message.reply("invalid role or input :))");
+            }
+        }
+    },
+//TODO: remove hardcoded accepted role and redo exists check
+    leaveRole: function(message) {
+        var content = message.content.toLowerCase();
+        var acceptedRoles = ["ruffboys"];
+        var requestedRole = content.replace("!leaverole ", "");
+        if (message.member.roles.exists('name', requestedRole.toUpperCase())) {
+            if (acceptedRoles.includes(requestedRole)) {
+                try {
+                    var role = message.guild.roles.find(role => role.name.toLowerCase() === requestedRole);
+                    message.member.removeRole(role);
+                    message.reply("You've beeen removed from " + role.name);
+                }
+                catch(err) {
+                    console.log(chalk.red("leaveRole error: " + err.message));
+                }
+            }
+            else {
+                message.reply("invalid role or input :))");
+            }
+        }
+        else {
+            message.reply("You're not a member of this role :o");
+        }        
     }
 }
 
