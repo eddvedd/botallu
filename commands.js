@@ -272,7 +272,7 @@ module.exports = {
                 try {
                     var role = message.guild.roles.find(role => role.name.toLowerCase() === requestedRole);
                     message.member.addRole(role);
-                    message.reply("You've beeen added to " + role.name);
+                    message.reply("You've been added to " + role.name);
                 }
                 catch(err) {
                     console.log(chalk.red("joinRole error: " + err.message));
@@ -293,7 +293,7 @@ module.exports = {
                 try {
                     var role = message.guild.roles.find(role => role.name.toLowerCase() === requestedRole);
                     message.member.removeRole(role);
-                    message.reply("You've beeen removed from " + role.name);
+                    message.reply("You've been removed from " + role.name);
                 }
                 catch(err) {
                     console.log(chalk.red("leaveRole error: " + err.message));
