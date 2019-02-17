@@ -51,7 +51,6 @@ client.on("typingStart", (channel, user) => {
 
 		if (randomNr === 1) {
 			channel.startTyping(1);
-			console.log(chalk.magentaBright("Allu started typing..."))
 			setTimeout(function()
 			{ 
 				channel.stopTyping(true);

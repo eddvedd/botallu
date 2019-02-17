@@ -31,7 +31,7 @@ module.exports = {
 
 	alluReply: function(message) {
     	var randomReply;
-    	switch (Math.floor((Math.random() * 6) + 1)) {
+    	switch (Math.floor((Math.random() * 7) + 1)) {
     		case 1: 
     			randomReply = "Fuk u want m8?";
     			break;
@@ -48,7 +48,11 @@ module.exports = {
     			randomReply = "Shut up";
     			break; 
     		case 6: 
-    			randomReply = "suck on these https://pbs.twimg.com/media/Bjfn9l8CcAEyvJC.jpg";   			    			    			   			
+    			randomReply = "suck on these https://pbs.twimg.com/media/Bjfn9l8CcAEyvJC.jpg";
+                break;
+            case 7:
+                randomReply = "EZ4ENCE";
+
     	}
     	message.reply(randomReply);
 	},
@@ -68,7 +72,7 @@ module.exports = {
 	flip: function(message) {
 		switch (Math.floor((Math.random() * 2) + 1)) {
 			case 1: 
-				message.reply("FaceIT!");
+				message.reply("esportal");
 				break;
 			case 2: 
 				message.reply("MM!");
@@ -77,7 +81,7 @@ module.exports = {
 	},
 
 	gather: function(message) {
-		message.reply("@everyone, come play CSGO")
+		message.reply("@RUFFBOYS, come play CSGO")
 	},
 
 	ready: function(message) {
