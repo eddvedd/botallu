@@ -36,7 +36,7 @@ module.exports = {
     			randomReply = "Fuk u want m8?";
     			break;
     		case 2: 
-    			randomReply = "Hey bro, don't leave me hanging :frowning:";
+    			randomReply = "Hello! Sorry to bother you all, but I’m new to the CS:GO competitive scene. I’m just very curious why it seems there’s nothing that could challenge the Finnish esports organization that goes by the name “ENCE Esports”? Everything just seems to be so easy for them!";
     			break; 
     		case 3: 
     			randomReply = "No";
