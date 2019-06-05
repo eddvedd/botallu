@@ -286,7 +286,7 @@ module.exports = {
     },
     lineofsight: function(message) {
         message.reply("https://imgur.com/pyLeoRn")
-    }
+    },
 //TODO: remove hardcoded accepted role and redo exists check
     leaveRole: function(message) {
         var content = message.content.toLowerCase();
