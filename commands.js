@@ -284,6 +284,9 @@ module.exports = {
             }
         }
     },
+    lineofsight: function(message) {
+        message.reply("https://imgur.com/pyLeoRn")
+    }
 //TODO: remove hardcoded accepted role and redo exists check
     leaveRole: function(message) {
         var content = message.content.toLowerCase();
@@ -321,7 +324,7 @@ function MsgToChannel(msg, client) {
     var _channel = client.channels.array();
     for (var i = _channel.length - 1; i >= 0; i--) {
         if (_channel[i].id === "181823407397011456") {
-           _channel[i].sendMessage(msg);        
+           _channel[i].send(msg);        
            }       
         }       
 }

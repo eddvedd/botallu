@@ -3,10 +3,9 @@ const myanimelist = require('./myanimelist');
 
 module.exports = {
 	handleMessage: function(message) {
-	message.content = message.content.toLowerCase();
-	//Save twitch highlight links to textfile
+		message.content = message.content.toLowerCase();
 		if (message.author.bot === false) {
-
+			//Save twitch highlight links to textfile
 			if (message.content.includes ("clips.twitch.tv")) {
 				command.saveTwitchHighlight(message);		
 			}
@@ -26,6 +25,9 @@ module.exports = {
 		    if (message.content === "!roll") {
 		        command.roll(message);
 		    }
+		    if (message.content === "!los") {
+		    	command.lineofsight(message);
+		    }
 
 		    if (message.content === "!flip") {
 		    	command.flip(message);
@@ -35,7 +37,7 @@ module.exports = {
 		    	command.gather(message);
 		    }
 
-		    if (message.content === "!ready") 
+		    if (message.content === "!ready" || message.content === "!r") 
 		    {
 		    	command.ready(message); 	
 		    }
@@ -111,7 +113,7 @@ module.exports = {
 
 	handlePresence: function(client, oldMember, newMember) {
 		if(newMember.presence.game !== null) {    
-			if (newMember.presence.game.streaming) {
+			if (newMember.presence.game.streaming && !oldMember.presence.game.streaming) {
 				command.presenceStreaming(client, newMember);				
 			}
 		}	
