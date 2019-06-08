@@ -9,15 +9,19 @@ var client = new Discord.Client();
 
 try {
 	client.on("message", function (message) {
-		handler.handleMessage(message);		
+		handler.HandleMessage(message);		
 	});
 }
 catch(e) {
 	console.log(chalk.red(e.message));
 }
 
-client.on("presenceUpdate", function (oldMember, newMember) {
-	handler.handlePresence(client, oldMember, newMember);
+client.on("presenceUpdate", (oldMember, newMember) => {
+	handler.HandlePresenceUpdate(client, oldMember, newMember);
+});
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+	handler.HandleVoiceStateUpdate(oldMember, newMember);
 });
 
 client.on("ready", () => {
@@ -39,7 +43,7 @@ client.on('error', (error) => {
 		console.log(chalk.greenBright("reconnecting..."));
 		client.login(config.token);				
 	}, 60000);
-})
+});
 
 client.on("messageDelete", (message) => {
 	handler.handleDelete(message);
@@ -57,6 +61,6 @@ client.on("typingStart", (channel, user) => {
 			}, 10000);			
 		}
 	}
-})
+});
 
 client.login(config.token);		    	

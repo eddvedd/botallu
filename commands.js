@@ -8,7 +8,7 @@ var readyArray = [];
 
 
 module.exports = {
-	saveTwitchHighlight: function(message) {
+	SaveTwitchHighlight: function(message) {
 		var str = message.content;
 		var data = "";
 		var re = new RegExp("^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$", "g");
@@ -29,7 +29,7 @@ module.exports = {
 		}
 	},
 
-	alluReply: function(message) {
+	AlluReply: function(message) {
     	var randomReply;
     	switch (Math.floor((Math.random() * 7) + 1)) {
     		case 1: 
@@ -57,19 +57,19 @@ module.exports = {
     	message.reply(randomReply);
 	},
 
-	commands: function(message) {
+	Commands: function(message) {
 		message.reply("!ping, !highlights, !remindme x, !roll, !flip, !maps x, !inhouse namn namn, !gather, !ready, !unready, !checkready, !clearready, !poll !checkdelete, !anime x, !manga x");
 	},
 
-	ping: function(message) {
+	Ping: function(message) {
 		message.reply("Pong!");
 	},
 
-	roll: function(message) {
+	Roll: function(message) {
 		message.reply(Math.floor((Math.random() * 100) + 1));
 	},
 
-	flip: function(message) {
+	Flip: function(message) {
 		switch (Math.floor((Math.random() * 2) + 1)) {
 			case 1: 
 				message.reply("esportal");
@@ -80,12 +80,12 @@ module.exports = {
 		}
 	},
 
-	gather: function(message) {
+	Gather: function(message) {
 		var role = message.guild.roles.find(role => role.name.toLowerCase() === "ruffboys");
         message.channel.send("<@&" + role.id +"> come play :)");
 	},
 
-	ready: function(message) {
+	Ready: function(message) {
     	if (readyArray.includes(message.author)) 
     	{
     		message.reply("You are already ready, bwaaka!")
@@ -107,7 +107,7 @@ module.exports = {
     	}  	
 	},
 
-	unready: function(message) {
+	Unready: function(message) {
     	if (readyArray.includes(message.author)) 
     	{
     		var index = readyArray.indexOf(message.author);
@@ -120,7 +120,7 @@ module.exports = {
     	}    	
 	},
 
-	checkready: function(message) {
+	Checkready: function(message) {
     	if (readyArray.length > 0) 
     	{
 	    	var mess = "Players ready: ";
@@ -134,12 +134,12 @@ module.exports = {
     	}
 	},
 
-	clearready: function(message) {
+	Clearready: function(message) {
     	readyArray.length = 0
     	message.channel.send("Ready has been cleared.");		
 	},
 
-	remindme: function(message) {
+	Remindme: function(message) {
     	var inputTimeout = message.content.replace('!remindme ','');
     	var timeout = inputTimeout * 60000 
 
@@ -163,7 +163,7 @@ module.exports = {
     	}		
 	},
 
-	highlights: function(message) {
+	Highlights: function(message) {
     	fs.readFile(path, function (error, data) {
     		if (error) {
     			console.error("write error:  " + error.message);
@@ -188,7 +188,7 @@ module.exports = {
     	});
 	},
 
-	maps: function(message) {
+	Maps: function(message) {
         var inputen = message.content;
         var new_map_pool = "Maps: ";
         var cs_maps = ["Dust 2", "Inferno", "Nuke", "Train", "Cache", "Cobblestone", "Overpass", "Mirage"];
@@ -204,14 +204,14 @@ module.exports = {
         }
 
         //Generate map pool
-        shuffleArray(cs_maps);
+        ShuffleArray(cs_maps);
         for(var i=0; i<no_of_maps; i++) {
             new_map_pool = new_map_pool + cs_maps[i] + " ";
         }
         message.reply(new_map_pool);		
 	},
 
-	inhouse: function(message) {
+	Inhouse: function(message) {
         var team_a = new Array();
         var team_b = new Array();
 
@@ -220,7 +220,7 @@ module.exports = {
         var player_array = player_names.split(" ");
 
         //Generate teams
-        shuffleArray(player_array);
+        ShuffleArray(player_array);
         for(var i=0; i<player_array.length; i++) {
             if(i & 1)
                 team_a.push(player_array[i]);
@@ -230,16 +230,16 @@ module.exports = {
         message.reply("LAG 1: " + team_a.join(" ") + ", LAG 2: " + team_b.join(" "));
 	},
 
-	poll: function(message) {
+	Poll: function(message) {
     	var pollQuestion = message.content.replace("!poll", "").trim();
     	message.channel.send("New poll: " + pollQuestion + " Use 👍 or 👎 to vote.");
 	},
 
-    checkDelete: function(message) {
+    CheckDelete: function(message) {
         message.channel.send(lastDeletedMessage);
     },
 
-	alluception: function(message) {
+	Alluception: function(message) {
 		console.log(chalk.greenBright("alluception(" + message.content + ")"));
 		if (message.content.toLowerCase().startsWith("new poll")) {
 			message.react('👍');
@@ -247,11 +247,11 @@ module.exports = {
 		}		
 	},
 
-    presenceStreaming: function(client, newMember) {
+    PresenceStreaming: function(client, newMember) {
         MsgToChannel(newMember.presence.game.url, client);
     },
 
-    deletedMessage: function(message) {
+    DeletedMessage: function(message) {
         console.log(chalk.redBright("This message was deleted:"));
         console.log(chalk.cyanBright(`${message.author.username}: ${message.content}`));
         lastDeletedMessage = `${message.author.username}: ${message.content}`;
@@ -261,7 +261,7 @@ module.exports = {
         }
     },
 
-    joinRole: function(message) {
+    JoinRole: function(message) {
         var content = message.content.toLowerCase();
         var acceptedRoles = ["ruffboys"];
         var requestedRole = content.replace("!joinrole ", "");
@@ -284,11 +284,11 @@ module.exports = {
             }
         }
     },
-    lineofsight: function(message) {
+    Lineofsight: function(message) {
         message.reply("https://imgur.com/pyLeoRn")
     },
 //TODO: remove hardcoded accepted role and redo exists check
-    leaveRole: function(message) {
+    LeaveRole: function(message) {
         var content = message.content.toLowerCase();
         var acceptedRoles = ["ruffboys"];
         var requestedRole = content.replace("!leaverole ", "");
@@ -310,10 +310,25 @@ module.exports = {
         else {
             message.reply("You're not a member of this role :o");
         }        
-    }
+    },
+
+    UpdateReadyOnVoiceState: function(oldMember, newMember) {
+        if (!readyArray.includes(newMember.user)) return;
+
+        let newUserChannel = newMember.voiceChannel;
+        let oldUserChannel = oldMember.voiceChannel;
+        //joins channel
+        if (oldUserChannel === undefined && newUserChannel !== undefined) return;
+        //leaves channel
+        if (newUserChannel === undefined) {
+            var index = readyArray.indexOf(newMember.user);
+            readyArray.splice(index, 1);
+            console.log(chalk.greenBright('Removed ' + newMember.user.username + ' from Ready'));            
+        }
+    },
 }
 
-function shuffleArray(a) {
+function ShuffleArray(a) {
     for (let i = a.length; i; i--) {
         let j = Math.floor(Math.random() * i);
         [a[i - 1], a[j]] = [a[j], a[i - 1]];

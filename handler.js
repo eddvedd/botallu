@@ -2,99 +2,99 @@ const command = require('./commands');
 const myanimelist = require('./myanimelist');
 
 module.exports = {
-	handleMessage: function(message) {
+	HandleMessage: function(message) {
 		message.content = message.content.toLowerCase();
 		if (message.author.bot === false) {
 			//Save twitch highlight links to textfile
 			if (message.content.includes ("clips.twitch.tv")) {
-				command.saveTwitchHighlight(message);		
+				command.SaveTwitchHighlight(message);		
 			}
 			//@allu response 
 		    if (message.content.includes ("468006950240649216")) {
-		    	command.alluReply(message);
+		    	command.AlluReply(message);
 		    }
 		    //commands
 		    if (message.content === "!commands") {
-		    	command.commands(message);
+		    	command.Commands(message);
 		    }
 
 		    if (message.content === "!ping") {
-		        command.ping(message);
+		        command.Ping(message);
 		    }
 
 		    if (message.content === "!roll") {
-		        command.roll(message);
+		        command.Roll(message);
 		    }
 		    if (message.content === "!los") {
-		    	command.lineofsight(message);
+		    	command.Lineofsight(message);
 		    }
 
 		    if (message.content === "!flip") {
-		    	command.flip(message);
+		    	command.Flip(message);
 		    }
 
 		    if (message.content === "!gather") {
-		    	command.gather(message);
+		    	command.Gather(message);
 		    }
 
 		    if (message.content === "!ready" || message.content === "!r") 
 		    {
-		    	command.ready(message); 	
+		    	command.Ready(message); 	
 		    }
 
 		    if (message.content === "!unready") 
 		    {
-		    	command.unready(message);  	
+		    	command.Unready(message);  	
 		    }
 
 		    if (message.content === "!checkready") 
 		    {
-		    	command.checkready(message);
+		    	command.Checkready(message);
 		    }
 
 		    if (message.content === "!clearready") 
 		    {
-		    	command.clearready(message);
+		    	command.Clearready(message);
 		    }
 
 		    if (message.content === "!checkdelete") 
 		    {
-		    	command.checkDelete(message);
+		    	command.CheckDelete(message);
 		    }
 
 		    if (message.content.startsWith("!remindme")) 
 		    {
-		    	command.remindme(message);
+		    	command.Remindme(message);
 		    }
 
 		    if (message.content.startsWith("!joinrole")) {
-		        command.joinRole(message);
+		        command.JoinRole(message);
 		    }
 
 		    if (message.content.startsWith("!leaverole")) {
-		        command.leaveRole(message);
+		        command.LeaveRole(message);
 		    }  		        	
 
 		    //Read highlights.txt and reply content
 		    if (message.content === "!highlights") {
-		    	command.highlights(message);
+		    	command.Highlights(message);
 		    }
 
 		    //Maps function
 		    if(message.content.startsWith("!maps"))
 		    {
-		    	command.maps(message);
+		    	command.Maps(message);
 		    }   
 
 		//Create teams
 		    if(message.content.startsWith("!inhouse"))
 		    {
-		    	command.inhouse(message);
+		    	command.Inhouse(message);
 		    }
 
 		    if (message.content.startsWith("!poll")) 
 		    {
-		    	command.poll(message);
+		    	command.Poll(message);
 		    }
 		    //MyAnimeList
 		    if (message.content.startsWith("!anime")) {
@@ -107,19 +107,23 @@ module.exports = {
 		}
 		else
 		{
-			command.alluception(message);
+			command.Alluception(message);
 		} 
 	},
 
-	handlePresence: function(client, oldMember, newMember) {
+	HandlePresenceUpdate: function(client, oldMember, newMember) {
 		if(newMember.presence.game !== null) {    
 			if (newMember.presence.game.streaming && !oldMember.presence.game.streaming) {
-				command.presenceStreaming(client, newMember);				
+				command.PresenceStreaming(client, newMember);				
 			}
 		}	
 	},
 
-	handleDelete: function(message) {
-		command.deletedMessage(message);
+	HandleDelete: function(message) {
+		command.DeletedMessage(message);
+	},
+
+	HandleVoiceStateUpdate: function(oldMember, newMember) {
+		command.UpdateReadyOnVoiceState(oldMember, newMember);
 	}
 }
