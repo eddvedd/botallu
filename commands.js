@@ -4,6 +4,7 @@ const config = require("./config.json");
 var dateFormat = require('dateformat');
 var lastDeletedMessage = "";
 var path = config.highlights;
+var mainChannelID = config.mainchannel;
 var readyArray = [];
 
 
@@ -338,7 +339,7 @@ function ShuffleArray(a) {
 function MsgToChannel(msg, client) {
     var _channel = client.channels.array();
     for (var i = _channel.length - 1; i >= 0; i--) {
-        if (_channel[i].id === "181823407397011456") {
+        if (_channel[i].id === mainChannelID) {
            _channel[i].send(msg);        
            }       
         }       
