@@ -26,11 +26,12 @@ You need to have Node.JS installed. https://nodejs.org/en/
   <li>myanimelist - "npm install myanimelists" </li>
 </ul>
 
-Create a file called config.json in same folder as index.js and give it the following content, using your real bot token and path to your highlights.txt:
+Create a file called config.json in same folder as index.js and give it the following content, using your real bot token, path to your highlights.txt and ChannelID to your main textchannel:
 
 ```
 { 
   "token"  : "YOUR.TOKEN.HERE",
   "highlights" : "C:\\Users\\PATH\\TO\\BOTALLU\\highlights.txt"
+  "mainchannel" : "ID"
 }
 ```
