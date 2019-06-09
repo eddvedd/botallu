@@ -237,7 +237,7 @@ module.exports = {
 	},
 
     CheckDelete: function(message) {
-        message.channel.send(lastDeletedMessage);
+        message.channel.send(lastDeletedMessage || "nothing has been deleted");
     },
 
 	Alluception: function(message) {
