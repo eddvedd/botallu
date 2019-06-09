@@ -46,7 +46,7 @@ client.on('error', (error) => {
 });
 
 client.on("messageDelete", (message) => {
-	handler.handleDelete(message);
+	handler.HandleDelete(message);
 })
 
 client.on("typingStart", (channel, user) => {
