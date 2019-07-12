@@ -113,7 +113,7 @@ module.exports = {
 
 	HandlePresenceUpdate: function(client, oldMember, newMember) {
 		if(newMember.presence.game !== null) {    
-			if (newMember.presence.game.streaming && !oldMember.presence.game.streaming) {
+			if (newMember.presence.game.streaming) {
 				command.PresenceStreaming(client, newMember);				
 			}
 		}	
