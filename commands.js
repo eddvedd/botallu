@@ -34,12 +34,7 @@ module.exports = {
     	switch (Math.floor((Math.random() * 5) + 1)) {
     		case 1: 
                 var mask = emojis.cache.find(emoji => emoji.name === "orranMask");
-                if (mask !== undefined) {
-                    message.reply(`${mask}`);
-                }
-                else {
-                    message.reply('No');
-                }
+                message.reply(`${mask}`);
     			break;
     		case 2: 
     			message.reply("Yes");
@@ -49,12 +44,7 @@ module.exports = {
     			break;
     		case 3: 
                 var froge = emojis.cache.find(emoji => emoji.name === "froge");
-    			if (froge !== undefined) {
-                    message.reply(`${froge}`);
-                }
-                else {
-                    message.reply('shut up.');
-                }
+                message.reply(`${froge}`);
     			break; 
     		case 4: 
     			message.reply("suck on these https://pbs.twimg.com/media/Bjfn9l8CcAEyvJC.jpg");
@@ -64,12 +54,7 @@ module.exports = {
                 break;
             case 5:
                 var kappa = emojis.cache.find(emoji => emoji.name === "KappaOrran");
-                if (kappa !== undefined) {
-                    message.reply(`${kappa}`)
-                }
-                else {
-                    message.reply('EZ4ENCE');
-                }
+                message.reply(`${kappa}`);
     	}
 	},
 
