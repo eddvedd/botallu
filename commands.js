@@ -1,11 +1,11 @@
-var fs = require("fs");
-var chalk = require('chalk');
+const fs = require("fs");
+const chalk = require('chalk');
 const config = require("./config.json");
-var dateFormat = require('dateformat');
-var lastDeletedMessage = "";
-var path = config.highlights;
-var mainChannelID = config.mainchannel;
-var readyArray = [];
+const dateFormat = require('dateformat');
+const lastDeletedMessage = "";
+const path = config.highlights;
+const mainChannelID = config.mainchannel;
+const readyArray = [];
 
 
 module.exports = {
@@ -248,8 +248,9 @@ module.exports = {
 		}		
 	},
 
-    PresenceStreaming: function(client, activity, username) {
-        var msg = username + ' is streaming ' + activity.name + ' at:' + activity.url;
+    PresenceStreaming: function(client, activity, userID) {
+        var user = GetUserById(client, userID);
+        var msg = user.username + ' is streaming ' + activity.name + ' at:' + activity.url;
         MsgToChannel(msg, client);
     },
 
@@ -314,24 +315,23 @@ module.exports = {
         }        
     },
 
-    UpdateReadyOnVoiceState: function(oldMember, newMember) {
-        if (!readyArray.includes(newMember.user)) return;
+    UpdateReadyOnVoiceState: function(client, oldVoiceState, newVoiceState) {
+        var user = GetUserById(client, newVoiceState.id)
+        if (!readyArray.includes(user)) {
+            return;
+        }
+        let newUserChannel = newVoiceState.channel;
+        let oldUserChannel = oldVoiceState.channel;
 
-        let newUserChannel = newMember.voiceChannel;
-        let oldUserChannel = oldMember.voiceChannel;
         //joins channel
-        if (oldUserChannel === undefined && newUserChannel !== undefined) return;
+        if (oldUserChannel === null && newUserChannel !== null) return;
         //leaves channel
-        if (newUserChannel === undefined) {
-            var index = readyArray.indexOf(newMember.user);
+        if (newUserChannel === null) {
+            var index = readyArray.indexOf(user);
             readyArray.splice(index, 1);
-            console.log(chalk.greenBright('Removed ' + newMember.user.username + ' from Ready'));            
+            console.log(chalk.greenBright('Removed ' + user.username + ' from Ready'));            
         }
     },
-
-    GetUserById: function(client, userID) {
-        return client.users.cache.get(userID);
-    }
 }
 
 function ShuffleArray(a) {
@@ -339,6 +339,10 @@ function ShuffleArray(a) {
         let j = Math.floor(Math.random() * i);
         [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
+}
+
+function GetUserById(client, userID) {
+    return client.users.cache.get(userID);
 }
 
 function MsgToChannel(msg, client) {

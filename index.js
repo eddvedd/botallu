@@ -1,11 +1,11 @@
 
 //Bot Allu
-var Discord = require("discord.js");
-var chalk = require('chalk');
+const Discord = require("discord.js");
+const chalk = require('chalk');
 const handler = require('./handler');
 const config = require("./config.json");
 
-var client = new Discord.Client();
+const client = new Discord.Client();
 
 try {
 	client.on("message", function (message) {
@@ -20,8 +20,8 @@ client.on("presenceUpdate", (oldMember, newMember) => {
 	handler.HandlePresenceUpdate(client, oldMember, newMember);
 });
 
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-	handler.HandleVoiceStateUpdate(oldMember, newMember);
+client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
+	handler.HandleVoiceStateUpdate(client, oldVoiceState, newVoiceState);
 });
 
 client.on("ready", () => {

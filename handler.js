@@ -120,8 +120,7 @@ module.exports = {
 		if(wasStreaming) return;
 		newPresence.activities.map(activity => {
 			if(activity.url !== null) {
-				let user = command.GetUserById(client, newPresence.userID);
-				command.PresenceStreaming(client, activity, user.username);
+				command.PresenceStreaming(client, activity, newPresence.userID);
 			}
 		});
 	},
@@ -130,7 +129,7 @@ module.exports = {
 		command.DeletedMessage(message);
 	},
 
-	HandleVoiceStateUpdate: function(oldMember, newMember) {
-		command.UpdateReadyOnVoiceState(oldMember, newMember);
+	HandleVoiceStateUpdate: function(client, oldVoiceState, newVoiceState) {
+		command.UpdateReadyOnVoiceState(client, oldVoiceState, newVoiceState);
 	}
 }
