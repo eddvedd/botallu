@@ -113,16 +113,24 @@ module.exports = {
 
 	HandlePresenceUpdate: function(client, oldPresence, newPresence) {
 		var wasStreaming = false;
-		oldPresence.activities.map(activity => {
-			if(activity.url !== null) wasStreaming = true;
-		});
-
-		if(wasStreaming) return;
-		newPresence.activities.map(activity => {
-			if(activity.url !== null) {
-				command.PresenceStreaming(client, activity, newPresence.userID);
+		try{
+			if(oldPresence !== undefined) 
+			{
+				oldPresence.activities.map(activity => {
+					if(activity.url !== null) wasStreaming = true;
+				});				
 			}
-		});
+
+			if(wasStreaming) return;
+			newPresence.activities.map(activity => {
+				if(activity.url !== null) {
+					command.PresenceStreaming(client, activity, newPresence.userID);
+				}
+			});			
+		}
+		catch(err){
+			console.log(chalk.red(err));
+		}
 	},
 
 	HandleDelete: function(message) {

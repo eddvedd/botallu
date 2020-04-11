@@ -255,6 +255,7 @@ module.exports = {
     PresenceStreaming: function(client, activity, userID) {
         var user = GetUserById(client, userID);
         var msg = user.username + ' is streaming ' + activity.name + ' at:' + activity.url;
+        console.log(chalk.greenBright(msg));
         MsgToChannel(msg, client);
     },
 
