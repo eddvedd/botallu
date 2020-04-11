@@ -28,7 +28,7 @@ client.on("ready", () => {
 	client.user.setActivity('Skynet', {type: 'PLAYING'} );
     console.log(chalk.cyanBright("Allu is online and ready!"));
     console.log(chalk.magentaBright(client.readyAt));
-    console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);		    	    
+    console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);		    	    
 })
 
 client.on('error', (error) => {

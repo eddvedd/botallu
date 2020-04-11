@@ -111,12 +111,19 @@ module.exports = {
 		} 
 	},
 
-	HandlePresenceUpdate: function(client, oldMember, newMember) {
-		if(newMember.presence.game !== null) {    
-			if (newMember.presence.game.streaming) {
-				command.PresenceStreaming(client, newMember);				
+	HandlePresenceUpdate: function(client, oldPresence, newPresence) {
+		var wasStreaming = false;
+		oldPresence.activities.map(activity => {
+			if(activity.url !== null) wasStreaming = true;
+		});
+
+		if(wasStreaming) return;
+		newPresence.activities.map(activity => {
+			if(activity.url !== null) {
+				let user = command.GetUserById(client, newPresence.userID);
+				command.PresenceStreaming(client, activity, user.username);
 			}
-		}	
+		});
 	},
 
 	HandleDelete: function(message) {

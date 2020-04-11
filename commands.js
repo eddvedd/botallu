@@ -248,8 +248,9 @@ module.exports = {
 		}		
 	},
 
-    PresenceStreaming: function(client, newMember) {
-        MsgToChannel(newMember.presence.game.url, client);
+    PresenceStreaming: function(client, activity, username) {
+        var msg = username + ' is streaming ' + activity.name + ' at:' + activity.url;
+        MsgToChannel(msg, client);
     },
 
     DeletedMessage: function(message) {
@@ -266,14 +267,14 @@ module.exports = {
         var content = message.content.toLowerCase();
         var acceptedRoles = ["ruffboys"];
         var requestedRole = content.replace("!joinrole ", "");
-        if (message.member.roles.exists('name', requestedRole.toUpperCase())) {
+        if (message.member.roles.cache.some(role => role.name === requestedRole.toUpperCase())) {
             message.reply("You're already a member of this role, perkele");
         }
         else {
             if (acceptedRoles.includes(requestedRole)) {
                 try {
                     var role = message.guild.roles.find(role => role.name.toLowerCase() === requestedRole);
-                    message.member.addRole(role);
+                    message.member.roles.add(role);
                     message.reply("You've been added to " + role.name);
                 }
                 catch(err) {
@@ -293,11 +294,11 @@ module.exports = {
         var content = message.content.toLowerCase();
         var acceptedRoles = ["ruffboys"];
         var requestedRole = content.replace("!leaverole ", "");
-        if (message.member.roles.exists('name', requestedRole.toUpperCase())) {
+        if (message.member.roles.cache.some(role => role.name === requestedRole.toUpperCase())) {
             if (acceptedRoles.includes(requestedRole)) {
                 try {
                     var role = message.guild.roles.find(role => role.name.toLowerCase() === requestedRole);
-                    message.member.removeRole(role);
+                    message.member.roles.remove(role);
                     message.reply("You've been removed from " + role.name);
                 }
                 catch(err) {
@@ -327,6 +328,10 @@ module.exports = {
             console.log(chalk.greenBright('Removed ' + newMember.user.username + ' from Ready'));            
         }
     },
+
+    GetUserById: function(client, userID) {
+        return client.users.cache.get(userID);
+    }
 }
 
 function ShuffleArray(a) {

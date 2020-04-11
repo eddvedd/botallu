@@ -1,0 +1,32 @@
+{
+  "name": "botallu",
+  "version": "1.0.0",
+  "description": "The master of all bots, Bot Allu\r ## Usability\r Type !commands to see all commands\r <ul>\r   <li>ready check</li>\r   <li>team randomizer for inhouse</li>\r   <li>stream alert</li>\r   <li>twitch highlight autosave</li>\r   <li>roll 1-100</li>\r   <li>remindme function</li>\r   <li>CSGO random map selector</li>\r   <li>yes/no polls</li>\r   <li>MyAnimeList search</li>\r </ul>",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "dateformat": "^3.0.3",
+    "discord.js": "^12.1.1",
+    "lodash": "^4.17.15",
+    "myanimelists": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddvedd/botallu.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "allu"
+  ],
+  "author": "eddvedd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eddvedd/botallu/issues"
+  },
+  "homepage": "https://github.com/eddvedd/botallu#readme"
+}
