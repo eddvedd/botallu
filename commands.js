@@ -2,7 +2,7 @@ const fs = require("fs");
 const chalk = require('chalk');
 const config = require("./config.json");
 const dateFormat = require('dateformat');
-const lastDeletedMessage = "";
+var lastDeletedMessage = "";
 const path = config.highlights;
 const mainChannelID = config.mainchannel;
 const readyArray = [];
@@ -30,32 +30,47 @@ module.exports = {
 		}
 	},
 
-	AlluReply: function(message) {
-    	var randomReply;
-    	switch (Math.floor((Math.random() * 7) + 1)) {
+	AlluReply: function(emojis, message) {
+    	switch (Math.floor((Math.random() * 5) + 1)) {
     		case 1: 
-    			randomReply = "Fuk u want m8?";
+                var mask = emojis.cache.find(emoji => emoji.name === "orranMask");
+                if (mask !== undefined) {
+                    message.reply(`${mask}`);
+                }
+                else {
+                    message.reply('No');
+                }
     			break;
     		case 2: 
-    			randomReply = "Hello! Sorry to bother you all, but I’m new to the CS:GO competitive scene. I’m just very curious why it seems there’s nothing that could challenge the Finnish esports organization that goes by the name “ENCE Esports”? Everything just seems to be so easy for them!";
-    			break; 
+    			message.reply("Yes");
+                message.react('👀')
+                    .then()
+                    .catch(console.error);                
+    			break;
     		case 3: 
-    			randomReply = "No";
-    			break;
-    		case 4: 
-    			randomReply = "Yes";
-    			break;
-    		case 5: 
-    			randomReply = "Shut up";
+                var froge = emojis.cache.find(emoji => emoji.name === "froge");
+    			if (froge !== undefined) {
+                    message.reply(`${froge}`);
+                }
+                else {
+                    message.reply('shut up.');
+                }
     			break; 
-    		case 6: 
-    			randomReply = "suck on these https://pbs.twimg.com/media/Bjfn9l8CcAEyvJC.jpg";
+    		case 4: 
+    			message.reply("suck on these https://pbs.twimg.com/media/Bjfn9l8CcAEyvJC.jpg");
+                message.react('👀')
+                    .then()
+                    .catch(console.error);
                 break;
-            case 7:
-                randomReply = "EZ4ENCE";
-
+            case 5:
+                var kappa = emojis.cache.find(emoji => emoji.name === "KappaOrran");
+                if (kappa !== undefined) {
+                    message.reply(`${kappa}`)
+                }
+                else {
+                    message.reply('EZ4ENCE');
+                }
     	}
-    	message.reply(randomReply);
 	},
 
 	Commands: function(message) {
@@ -243,8 +258,12 @@ module.exports = {
 	Alluception: function(message) {
 		console.log(chalk.greenBright("alluception(" + message.content + ")"));
 		if (message.content.toLowerCase().startsWith("new poll")) {
-			message.react('👍');
-		  	message.react('👎');	  	
+			message.react('👍')
+                .then()
+                .catch(console.error);
+		  	message.react('👎')
+                .then()
+                .catch(console.error);	  	
 		}		
 	},
 

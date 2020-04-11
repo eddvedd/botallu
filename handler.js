@@ -2,7 +2,7 @@ const command = require('./commands');
 const myanimelist = require('./myanimelist');
 
 module.exports = {
-	HandleMessage: function(message) {
+	HandleMessage: function(client, message) {
 		message.content = message.content.toLowerCase();
 		if (message.author.bot === false) {
 			//Save twitch highlight links to textfile
@@ -11,7 +11,7 @@ module.exports = {
 			}
 			//@allu response 
 		    if (message.content.includes ("468006950240649216")) {
-		    	command.AlluReply(message);
+		    	command.AlluReply(client.emojis, message);
 		    }
 		    //commands
 		    if (message.content === "!commands") {

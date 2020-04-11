@@ -9,7 +9,7 @@ const client = new Discord.Client();
 
 try {
 	client.on("message", function (message) {
-		handler.HandleMessage(message);		
+		handler.HandleMessage(client, message);		
 	});
 }
 catch(e) {
