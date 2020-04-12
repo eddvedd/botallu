@@ -29,7 +29,7 @@ client.on("ready", () => {
     console.log(chalk.cyanBright("Allu is online and ready!"));
     console.log(chalk.magentaBright(client.readyAt));
     console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);		    	    
-})
+});
 
 client.on('error', (error) => {
 	console.log(chalk.gray("///////ERROR////////"));

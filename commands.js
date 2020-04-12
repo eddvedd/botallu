@@ -12,8 +12,8 @@ module.exports = {
 	SaveTwitchHighlight: function(message) {
 		var str = message.content;
 		var data = "";
-		var re = new RegExp("^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$", "g");
-		var myArray = str.match(re);
+		var regex = new RegExp("^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$", "g");
+		var myArray = str.match(regex);
 		console.log(chalk.greenBright(str));
 		if (myArray != null) {
 			for (var i=0; i<myArray.length; i++) {
@@ -127,7 +127,7 @@ module.exports = {
 	    	var mess = "Players ready: ";
 	    	var mess2 = readyArray.toString();
 	    	var mess3 = mess + mess2;
-	    	message.channel.send(mess3)
+	    	message.channel.send(mess3);
     	}
     	else
     	{
@@ -136,13 +136,13 @@ module.exports = {
 	},
 
 	Clearready: function(message) {
-    	readyArray.length = 0
+    	readyArray.length = 0;
     	message.channel.send("Ready has been cleared.");		
 	},
 
 	Remindme: function(message) {
     	var inputTimeout = message.content.replace('!remindme ','');
-    	var timeout = inputTimeout * 60000 
+    	var timeout = inputTimeout * 60000; 
 
     	if (!isNaN(timeout)) 
     	{
@@ -150,7 +150,7 @@ module.exports = {
 	    	var currentDate = new Date();
 	    	var alertTime = new Date(currentDate.getTime() + timeout);
 	    	var replyDate = dateFormat(alertTime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-	    	message.reply("I will remind you " + replyDate + " perkele")
+	    	message.reply("I will remind you " + replyDate + " perkele");
 	    	//Reminder alert
 
 	    	setTimeout(function()
@@ -190,15 +190,15 @@ module.exports = {
 	},
 
 	Maps: function(message) {
-        var inputen = message.content;
+        var input = message.content;
         var new_map_pool = "Maps: ";
         var cs_maps = ["Dust 2", "Inferno", "Nuke", "Train", "Cache", "Cobblestone", "Overpass", "Mirage"];
         var no_of_maps = cs_maps.length;
 
         //New number of maps
-        var correct_command = inputen.match(/^!maps[ ]?[1-8]?$/);
-        if(correct_command && inputen.length > 5) {
-            new_map_count = inputen.replace("!maps ", "")
+        var correct_command = input.match(/^!maps[ ]?[1-8]?$/);
+        if(correct_command && input.length > 5) {
+            new_map_count = input.replace("!maps ", "")
             if(new_map_count > 0 && new_map_count <= cs_maps.length) {
                 no_of_maps = new_map_count;
             }
