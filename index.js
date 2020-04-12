@@ -16,8 +16,8 @@ catch(e) {
 	console.log(chalk.red(e.message));
 }
 
-client.on("presenceUpdate", (oldMember, newMember) => {
-	handler.HandlePresenceUpdate(client, oldMember, newMember);
+client.on("presenceUpdate", (oldPresence, newPresence) => {
+	handler.HandlePresenceUpdate(client, oldPresence, newPresence);
 });
 
 client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {

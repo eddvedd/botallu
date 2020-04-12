@@ -96,10 +96,7 @@ module.exports = {
     	    try
     		{
     			readyArray.push(message.author);
-    	    	var mess = "Players ready: ";
-    			var mess2 = readyArray.toString();
-    			var mess3 = mess + mess2;
-    			message.reply(mess3);		  
+    			message.reply('Players ready: ' + readyArray.toString());		  
     		}
     		catch(err)
     		{
@@ -196,25 +193,29 @@ module.exports = {
         var no_of_maps = cs_maps.length;
 
         //New number of maps
-        var correct_command = input.match(/^!maps[ ]?[1-8]?$/);
-        if(correct_command && input.length > 5) {
+        try {
             new_map_count = input.replace("!maps ", "")
             if(new_map_count > 0 && new_map_count <= cs_maps.length) {
                 no_of_maps = new_map_count;
             }
-        }
 
-        //Generate map pool
-        ShuffleArray(cs_maps);
-        for(var i=0; i<no_of_maps; i++) {
-            new_map_pool = new_map_pool + cs_maps[i] + " ";
+            //Generate map pool
+            ShuffleArray(cs_maps);
+            for(var i=0; i<no_of_maps; i++) {
+                new_map_pool = new_map_pool + cs_maps[i] + " ";
+            }
+            message.reply(new_map_pool);            
         }
-        message.reply(new_map_pool);		
+        catch(err)
+        {
+            console.log(err);
+            message.reply('try again with correct input... ');
+        }		
 	},
 
 	Inhouse: function(message) {
-        var team_a = new Array();
-        var team_b = new Array();
+        var team_a = [];
+        var team_b = [];
 
         //Split player names
         var player_names = message.content.replace("!inhouse", "").trim();
