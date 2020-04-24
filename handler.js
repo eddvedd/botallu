@@ -37,7 +37,7 @@ module.exports = {
 		    	command.Gather(message);
 		    }
 
-		    if (message.content === "!ready" || message.content === "!r") 
+		    if (message.content === ("!ready") || message.content.trim().startsWith("!r")) 
 		    {
 		    	command.Ready(message); 	
 		    }
