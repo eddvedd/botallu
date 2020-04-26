@@ -39,33 +39,27 @@ module.exports = {
 
 		    if (message.content === "!ready" || 
 		    	message.content === "!r" ||
-		    	message.content.startsWith("!r ")) 
-		    {
+		    	message.content.startsWith("!r ")) {
 		    	command.Ready(message); 	
 		    }
 
-		    if (message.content === "!unready") 
-		    {
+		    if (message.content === "!unready") {
 		    	command.Unready(message);  	
 		    }
 
-		    if (message.content === "!checkready") 
-		    {
+		    if (message.content === "!checkready") {
 		    	command.Checkready(message);
 		    }
 
-		    if (message.content === "!clearready") 
-		    {
+		    if (message.content === "!clearready") {
 		    	command.Clearready(message);
 		    }
 
-		    if (message.content === "!checkdelete") 
-		    {
+		    if (message.content === "!checkdelete") {
 		    	command.CheckDelete(message);
 		    }
 
-		    if (message.content.startsWith("!remindme")) 
-		    {
+		    if (message.content.startsWith("!remindme")) {
 		    	command.Remindme(message);
 		    }
 
@@ -83,19 +77,16 @@ module.exports = {
 		    }
 
 		    //Maps function
-		    if(message.content.startsWith("!maps"))
-		    {
+		    if(message.content.startsWith("!maps")) {
 		    	command.Maps(message);
 		    }   
 
-		//Create teams
-		    if(message.content.startsWith("!inhouse"))
-		    {
+			//Create teams
+		    if(message.content.startsWith("!inhouse")) {
 		    	command.Inhouse(message);
 		    }
 
-		    if (message.content.startsWith("!poll")) 
-		    {
+		    if (message.content.startsWith("!poll")) {
 		    	command.Poll(message);
 		    }
 		    //MyAnimeList
@@ -116,8 +107,7 @@ module.exports = {
 	HandlePresenceUpdate: function(client, oldPresence, newPresence) {
 		var wasStreaming = false;
 		try{
-			if(oldPresence !== undefined) 
-			{
+			if(oldPresence !== undefined) {
 				oldPresence.activities.map(activity => {
 					if(activity.url !== null) wasStreaming = true;
 				});				
