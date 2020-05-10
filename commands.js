@@ -9,7 +9,7 @@ const readyArray = [];
 
 
 module.exports = {
-	SaveTwitchHighlight: function(message) {
+    SaveTwitchHighlight: function(message) {
 		var str = message.content;
 		var data = "";
 		var regex = new RegExp("^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$", "g");
@@ -352,10 +352,6 @@ function GetUserById(client, userID) {
 }
 
 function MsgToChannel(msg, client) {
-    var _channel = client.channels.array();
-    for (var i = _channel.length - 1; i >= 0; i--) {
-        if (_channel[i].id === mainChannelID) {
-           _channel[i].send(msg);        
-           }       
-        }       
+    var channel = client.channels.cache.find(channel => channel.id === mainChannelID);
+    channel.send(msg);
 }

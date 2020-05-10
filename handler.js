@@ -1,5 +1,6 @@
 const command = require('./commands');
 const myanimelist = require('./myanimelist');
+const chalk = require('chalk');
 
 module.exports = {
 	HandleMessage: function(client, message) {
