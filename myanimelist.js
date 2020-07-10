@@ -1,7 +1,5 @@
-const { getInfoFromName, searchResultsWhereNameAndType } = require('myanimelists');
-//const { searchResultsWhereNameAndType } = require('myanimelists');
-const { getInfoFromURL } = require('myanimelists');
-var chalk = require('chalk');
+const { getInfoFromName, searchResultsWhereNameAndType, getInfoFromURL } = require('myanimelists');
+const chalk = require('chalk');
 
 module.exports = {
 	searchAnime: function(message) {
