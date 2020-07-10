@@ -1,26 +1,29 @@
-const { getInfoFromName } = require('myanimelists');
-const { searchResultsWhereNameAndType } = require('myanimelists');
+const { getInfoFromName, searchResultsWhereNameAndType } = require('myanimelists');
+//const { searchResultsWhereNameAndType } = require('myanimelists');
 const { getInfoFromURL } = require('myanimelists');
 var chalk = require('chalk');
 
 module.exports = {
 	searchAnime: function(message) {
 		try {
-			var animeQ = message.content.replace('!anime ', '');
-			getInfoFromName(animeQ)
+			var query = message.content.replace('!anime ', '');
+			getInfoFromName(query)
 			    .then(function(animeResult) {
     				var episodes = animeResult.episodes;
 					var genresArray = animeResult.genres;
-					var genresString = "";
-					for(var i=0; i<genresArray.length; i++) {
-						genresString += genresArray[i] + ", ";
-					}
-					genresString = genresString.slice(0, -2);
+					//myanimelist has updated their html and the scraper doesnt handle it well..
+					//genresArray[0] can now be expected to be " ActionAction   "
+					const cleanedGenres = genresArray.map(genre => {
+						genre = genre.trim();
+						genre = genre.slice(0, genre.length/2)
+						return genre;
+					});
+
 					var score = animeResult.score;
 					var url = animeResult.url;
 					var title = animeResult.englishTitle;
 
-					var animeReturnString = title + " | " + url + " | " + genresString + " | Score: " + score + " | Episodes: " + episodes;
+					var animeReturnString = title + " | " + url + " | " + cleanedGenres.join(', ') + " | Score: " + score + " | Episodes: " + episodes;
 
 					message.reply(animeReturnString);
 			    }); 

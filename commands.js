@@ -105,6 +105,26 @@ module.exports = {
     	}  	
 	},
 
+    AddReady: function(message) {
+        var username = message.content.replace('!addready ', '');
+        if (readyArray.includes(username)) 
+        {
+            message.reply("Already ready, bwaaka!");
+        }
+        else
+        {
+            try
+            {
+                readyArray.push(username);
+                message.reply('Players ready: ' + readyArray.toString());         
+            }
+            catch(err)
+            {
+                console.log(chalk.red(err));
+            }                       
+        }   
+    },    
+
 	Unready: function(message) {
     	if (readyArray.includes(message.author)) 
     	{
@@ -276,6 +296,9 @@ module.exports = {
         var requestedRole = content.replace("!joinrole ", "");
         if (message.member.roles.cache.some(role => role.name === requestedRole.toUpperCase())) {
             message.reply("You're already a member of this role, perkele");
+        }
+        if (message.member.roles.cache.some(role => role.name === 'förhud')) {
+            message.reply("SPY DETECTED! :detective: ");
         }
         else {
             if (acceptedRoles.includes(requestedRole)) {
