@@ -21,7 +21,7 @@ module.exports = {
 					var url = animeResult.url;
 					var title = animeResult.englishTitle;
 
-					var animeReturnString = title + " | " + url + " | " + cleanedGenres.join(', ') + " | Score: " + score + " | Episodes: " + episodes;
+					var animeReturnString = title + "\n" + url + "\n" + cleanedGenres.join(', ') + "\nScore: " + score + " | Episodes: " + episodes;
 
 					message.reply(animeReturnString);
 			    }); 
