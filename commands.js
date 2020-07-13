@@ -110,6 +110,10 @@ module.exports = {
         var uglyUserId = message.content.replace('!addready ', '');
         var userId = helper.DecodeUserId(uglyUserId);
         var user = helper.GetUserById(client, userId);
+        if (user == undefined || user.bot) {
+            message.reply("... stoopid");
+            return;
+        }
         if (readyArray.includes(user)) 
         {
             message.reply("Already ready, bwaaka!");
@@ -359,5 +363,22 @@ module.exports = {
             readyArray.splice(index, 1);
             console.log(chalk.greenBright('Removed ' + user.username + ' from Ready'));            
         }
+    },
+
+    Nani: function(client) {
+        client.channels.fetch('320599381164425216')
+            .then(channel => {
+                channel.join()
+                .then(connection => {
+                    const dispatcher = connection.play('./clientresources/misc/nani.mp3', {volume: 0.2 });
+                    dispatcher.on("speaking", status => {
+                        console.log(status);
+                        if (status === 0) {
+                            connection.disconnect();
+                        }
+                    });
+                });
+            })
+            .catch(console.error);
     },
 }

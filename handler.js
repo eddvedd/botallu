@@ -48,15 +48,19 @@ module.exports = {
 		    	command.AddReady(client, message);
 		    }
 
-		    if (message.content === "!unready") {
+		    if (message.content === "!unready" ||
+		    	message.content === "!ur" ||
+		    	message.content.startsWith("!ur ")) {
 		    	command.Unready(message);  	
 		    }
 
-		    if (message.content === "!checkready") {
+		    if (message.content === "!checkready" ||
+		    	message.content === "!cr" ||
+		    	message.content.startsWith("!cr ")) {
 		    	command.Checkready(message);
 		    }
 
-		    if (message.content === "!clearready") {
+		    if (message.content === "!clear") {
 		    	command.Clearready(message);
 		    }
 
@@ -101,6 +105,9 @@ module.exports = {
 
 		    if (message.content.startsWith("!manga")) {
 		    	myanimelist.searchManga(message);
+		    }
+		    if (message.content === "!nani") {
+		    	command.Nani(client);
 		    }				    		    			
 		}
 		else

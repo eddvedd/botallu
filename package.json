@@ -4,6 +4,7 @@
   "description": "The master of all bots, Bot Allu\r ## Usability\r Type !commands to see all commands\r <ul>\r   <li>ready check</li>\r   <li>team randomizer for inhouse</li>\r   <li>stream alert</li>\r   <li>twitch highlight autosave</li>\r   <li>roll 1-100</li>\r   <li>remindme function</li>\r   <li>CSGO random map selector</li>\r   <li>yes/no polls</li>\r   <li>MyAnimeList search</li>\r </ul>",
   "main": "index.js",
   "dependencies": {
+    "@discordjs/opus": "github:discordjs/opus",
     "chalk": "^2.4.2",
     "dateformat": "^3.0.3",
     "discord.js": "^12.1.1",
