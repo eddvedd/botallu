@@ -6,6 +6,9 @@ module.exports = {
 	BoldText:function(text) {
 		return "**" + text + "**";
 	},
+	CursiveText:function(text) {
+		return "*" + text + "*";
+	},	
 	GetUserById:function(client, userID) {
 		return client.users.cache.get(userID);
 	},
