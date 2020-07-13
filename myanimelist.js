@@ -40,7 +40,7 @@ module.exports = {
 			     	var title = mangaResult.name;
 			     	var url = mangaResult.url;
 
-			     	message.reply(title + " | " + url);
+			     	message.reply(title + "\n" + url);
 			    }); 
 		}
 		catch(err) {
