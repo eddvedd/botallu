@@ -372,7 +372,6 @@ module.exports = {
                 .then(connection => {
                     const dispatcher = connection.play('./clientresources/misc/nani.mp3', {volume: 0.2 });
                     dispatcher.on("speaking", status => {
-                        console.log(status);
                         if (status === 0) {
                             connection.disconnect();
                         }
