@@ -2,6 +2,7 @@ const fs = require("fs");
 const chalk = require('chalk');
 const config = require("./config.json");
 const dateFormat = require('dateformat');
+const helper = require('./helper');
 var lastDeletedMessage = "";
 const path = config.highlights;
 const mainChannelID = config.mainchannel;
@@ -220,7 +221,7 @@ module.exports = {
             }
 
             //Generate map pool
-            ShuffleArray(cs_maps);
+            helper.ShuffleArray(cs_maps);
             for(var i=0; i<no_of_maps; i++) {
                 new_map_pool = new_map_pool + cs_maps[i] + " ";
             }
@@ -242,7 +243,7 @@ module.exports = {
         var player_array = player_names.split(" ");
 
         //Generate teams
-        ShuffleArray(player_array);
+        helper.ShuffleArray(player_array);
         for(var i=0; i<player_array.length; i++) {
             if(i & 1)
                 team_a.push(player_array[i]);
@@ -274,10 +275,10 @@ module.exports = {
 	},
 
     PresenceStreaming: function(client, activity, userID) {
-        var user = GetUserById(client, userID);
+        var user = helper.GetUserById(client, userID);
         var msg = user.username + ' is streaming ' + activity.name + ' at:' + activity.url;
         console.log(chalk.greenBright(msg));
-        MsgToChannel(msg, client);
+        helper.MsgToChannel(msg, client);
     },
 
     DeletedMessage: function(message) {
@@ -345,7 +346,7 @@ module.exports = {
     },
 
     UpdateReadyOnVoiceState: function(client, oldVoiceState, newVoiceState) {
-        var user = GetUserById(client, newVoiceState.id)
+        var user = helper.GetUserById(client, newVoiceState.id)
         if (!readyArray.includes(user)) {
             return;
         }
@@ -361,20 +362,4 @@ module.exports = {
             console.log(chalk.greenBright('Removed ' + user.username + ' from Ready'));            
         }
     },
-}
-
-function ShuffleArray(a) {
-    for (let i = a.length; i; i--) {
-        let j = Math.floor(Math.random() * i);
-        [a[i - 1], a[j]] = [a[j], a[i - 1]];
-    }
-}
-
-function GetUserById(client, userID) {
-    return client.users.cache.get(userID);
-}
-
-function MsgToChannel(msg, client) {
-    var channel = client.channels.cache.find(channel => channel.id === mainChannelID);
-    channel.send(msg);
 }

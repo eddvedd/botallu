@@ -1,5 +1,6 @@
 const { getInfoFromName, searchResultsWhereNameAndType, getInfoFromURL } = require('myanimelists');
 const chalk = require('chalk');
+const helper = require('./helper');
 
 module.exports = {
 	searchAnime: function(message) {
@@ -21,7 +22,7 @@ module.exports = {
 					var url = animeResult.url;
 					var title = animeResult.englishTitle;
 
-					var animeReturnString = title + "\n" + url + "\n" + cleanedGenres.join(', ') + "\nScore: " + score + " | Episodes: " + episodes;
+					var animeReturnString = "\n> " + helper.BoldText(title) + "\n> " + url + "\n> " + cleanedGenres.join(', ') + "\n> Score: " + score + " | Episodes: " + episodes;
 
 					message.reply(animeReturnString);
 			    }); 
