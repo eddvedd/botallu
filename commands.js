@@ -108,7 +108,7 @@ module.exports = {
 
     AddReady: function(client, message) {
         var uglyUserId = message.content.replace('!addready ', '');
-        var userId = uglyUserId.replace('<', '').replace('@', '').replace('>', '').replace('!', '');
+        var userId = helper.DecodeUserId(uglyUserId);
         var user = helper.GetUserById(client, userId);
         if (readyArray.includes(user)) 
         {
@@ -164,12 +164,10 @@ module.exports = {
 
     	if (!isNaN(timeout)) 
     	{
-    		//confirmation
 	    	var currentDate = new Date();
 	    	var alertTime = new Date(currentDate.getTime() + timeout);
 	    	var replyDate = dateFormat(alertTime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 	    	message.reply("I will remind you " + replyDate + " perkele");
-	    	//Reminder alert
 
 	    	setTimeout(function()
     		{ 

@@ -34,4 +34,8 @@ module.exports = {
 	BlockQuote:function() {
 		return "> ";
 	},
+
+	DecodeUserId:function(encodedUserId) {
+		return encodedUserId.replace('<@!', '').replace('>', '');
+	},
 };
