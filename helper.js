@@ -18,4 +18,10 @@ module.exports = {
 	        [a[i - 1], a[j]] = [a[j], a[i - 1]];
 	    }		
 	},
+	NewLine:function() {
+		return "\n";
+	},
+	BlockQuote:function() {
+		return "> ";
+	},
 };
