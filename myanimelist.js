@@ -22,7 +22,11 @@ module.exports = {
 					var url = animeResult.url;
 					var title = animeResult.englishTitle;
 
-					var animeReturnString = "\n> " + helper.BoldText(title) + "\n> " + url + "\n> " + helper.CursiveText(cleanedGenres.join(', ')) + "\n> Score: " + score + " | Episodes: " + episodes;
+					var animeReturnString = "\n> " 
+						+ helper.BoldText(title) + "\n> " 
+						+ url + "\n> " 
+						+ helper.CursiveText(cleanedGenres.join(', ')) + "\n" 
+						+ "> Score: " + score + " | Episodes: " + episodes;
 
 					message.reply(animeReturnString);
 			    }); 
