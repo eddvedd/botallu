@@ -97,7 +97,7 @@ module.exports = {
     	    try
     		{
     			readyArray.push(message.author);
-    			message.reply('Players ready: ' + readyArray.toString());		  
+    			message.reply('Players ready: ' + readyArray.join(', '));		  
     		}
     		catch(err)
     		{
@@ -106,9 +106,11 @@ module.exports = {
     	}  	
 	},
 
-    AddReady: function(message) {
-        var username = message.content.replace('!addready ', '');
-        if (readyArray.includes(username)) 
+    AddReady: function(client, message) {
+        var uglyUserId = message.content.replace('!addready ', '');
+        var userId = uglyUserId.replace('<', '').replace('@', '').replace('>', '').replace('!', '');
+        var user = helper.GetUserById(client, userId);
+        if (readyArray.includes(user)) 
         {
             message.reply("Already ready, bwaaka!");
         }
@@ -116,7 +118,7 @@ module.exports = {
         {
             try
             {
-                readyArray.push(username);
+                readyArray.push(user);
                 message.reply('Players ready: ' + readyArray.toString());         
             }
             catch(err)
@@ -130,22 +132,20 @@ module.exports = {
     	if (readyArray.includes(message.author)) 
     	{
     		var index = readyArray.indexOf(message.author);
-    		readyArray.splice(index, 1);
-    		message.channel.send("Removed " + message.author + " from Ready");
+    		var user = readyArray.splice(index, 1);
+    		message.channel.send("Removed " + user + " from Ready");
     	}
     	else
     	{
-    		message.channel.send("bot allu slaps " + message.author + " around a bit with a large trout");
+    		message.channel.send("bot allu slaps " + user + " around a bit with a large trout");
     	}    	
 	},
 
 	Checkready: function(message) {
     	if (readyArray.length > 0) 
     	{
-	    	var mess = "Players ready: ";
-	    	var mess2 = readyArray.toString();
-	    	var mess3 = mess + mess2;
-	    	message.channel.send(mess3);
+	    	var playersready = "Players ready: " + readyArray.join(', ');
+	    	message.channel.send(playersready);
     	}
     	else
     	{

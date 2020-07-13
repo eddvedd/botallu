@@ -45,7 +45,7 @@ module.exports = {
 		    }
 
 		    if (message.content.startsWith("!addready ")) {
-		    	command.AddReady(message);
+		    	command.AddReady(client, message);
 		    }
 
 		    if (message.content === "!unready") {
