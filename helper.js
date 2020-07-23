@@ -38,4 +38,16 @@ module.exports = {
 	DecodeUserId:function(encodedUserId) {
 		return encodedUserId.replace('<@!', '').replace('>', '');
 	},
+
+	JoinAndPlayAudio: function(channel, audioPath) {
+	    channel.join()
+	    .then(connection => {
+	        const dispatcher = connection.play(audioPath, {volume: 0.2 });
+	        dispatcher.on("speaking", status => {
+	            if (status === 0) {
+	                connection.disconnect();
+	            }
+	        });
+	    });		
+	},	
 };

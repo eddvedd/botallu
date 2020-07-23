@@ -60,7 +60,8 @@ module.exports = {
 		    	command.Checkready(message);
 		    }
 
-		    if (message.content === "!clear") {
+		    if (message.content === "!clear" ||
+		    	message.content === "!clearready") {
 		    	command.Clearready(message);
 		    }
 
@@ -106,9 +107,12 @@ module.exports = {
 		    if (message.content.startsWith("!manga")) {
 		    	myanimelist.searchManga(message);
 		    }
-		    if (message.content === "!nani") {
-		    	command.Nani(client);
-		    }				    		    			
+		    if (message.content.startsWith("!nani")) {
+		    	command.Nani(client, message);
+		    }
+		    if (message.content.startsWith("!scatman")) {
+		    	command.Scatman(client, message);
+		    }			    				    		    			
 		}
 		else
 		{
@@ -143,5 +147,5 @@ module.exports = {
 
 	HandleVoiceStateUpdate: function(client, oldVoiceState, newVoiceState) {
 		command.UpdateReadyOnVoiceState(client, oldVoiceState, newVoiceState);
-	}
+	},
 }
