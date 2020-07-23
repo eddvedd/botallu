@@ -5,6 +5,7 @@ const dateFormat = require('dateformat');
 const helper = require('./helper');
 var lastDeletedMessage = "";
 const path = config.highlights;
+const mainVoice = config.mainvoicechannel;
 const mainChannelID = config.mainchannel;
 const readyArray = [];
 
@@ -365,19 +366,29 @@ module.exports = {
         }
     },
 
-    Nani: function(client) {
-        client.channels.fetch('320599381164425216')
+    Nani: function(client, message) {
+        const userInput = message.content.replace('!nani ', '');
+        var channelID = mainVoice;
+        if (userInput != '' && userInput != '!nani') {
+            channelID = userInput;
+        }
+        client.channels.fetch(channelID)
             .then(channel => {
-                channel.join()
-                .then(connection => {
-                    const dispatcher = connection.play('./clientresources/misc/nani.mp3', {volume: 0.2 });
-                    dispatcher.on("speaking", status => {
-                        if (status === 0) {
-                            connection.disconnect();
-                        }
-                    });
-                });
+                helper.JoinAndPlayAudio(channel, './clientresources/misc/nani.ogg');
             })
             .catch(console.error);
     },
+
+    Scatman: function(client, message) {
+        const userInput = message.content.replace('!scatman ', '');
+        var channelID = mainVoice;
+        if (userInput != '' && userInput != '!scatman') {
+            channelID = userInput;
+        }        
+        client.channels.fetch(channelID)
+            .then(channel => {
+                helper.JoinAndPlayAudio(channel, './clientresources/misc/scatman.mp3');
+            })
+            .catch(console.error);        
+    }
 }
