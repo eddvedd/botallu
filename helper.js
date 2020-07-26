@@ -27,14 +27,6 @@ module.exports = {
 	    }		
 	},
 
-	NewLine:function() {
-		return "\n";
-	},
-
-	BlockQuote:function() {
-		return "> ";
-	},
-
 	DecodeUserId:function(encodedUserId) {
 		return encodedUserId.replace('<@!', '').replace('>', '');
 	},
