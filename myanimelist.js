@@ -1,8 +1,8 @@
 const { getInfoFromName, searchResultsWhereNameAndType, getInfoFromURL } = require('myanimelists');
 const chalk = require('chalk');
 const helper = require('./helper');
-const _newLine = helper.NewLine();
-const _blockQuote = helper.BlockQuote();
+const _newLine = "\n";
+const _blockQuote = "> ";
 
 module.exports = {
 	searchAnime: function(message) {
