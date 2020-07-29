@@ -7,8 +7,9 @@ const cache = new CacheService({ stdTTL: 0, maxKeys: 100 });
 
 module.exports = {
 	getAnimeFromName: function (query) {
+		const key = `getAnimeFromName${query}`;
 		return cache
-			.get(query, () =>
+			.get(key, () =>
 				getInfoFromName(query).then((info) => {
 					return info;
 				})
@@ -19,8 +20,9 @@ module.exports = {
 	},
 
 	getMangaFromName: function (query) {
+		const key = `getMangaFromName${query}`;
 		return cache
-			.get(query, () =>
+			.get(key, () =>
 				searchResultsWhereNameAndType(query, "manga").then((info) => {
 					return info;
 				})
