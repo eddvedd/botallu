@@ -9,7 +9,8 @@
     "dateformat": "^3.0.3",
     "discord.js": "^12.1.1",
     "lodash": "^4.17.19",
-    "myanimelists": "^1.0.2"
+    "myanimelists": "^1.0.2",
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {},
   "scripts": {
