@@ -7,11 +7,11 @@ module.exports = {
 	},
 
 	BoldText: function (text) {
-		return "**" + text + "**";
+		return '**' + text + '**';
 	},
 
 	CursiveText: function (text) {
-		return "*" + text + "*";
+		return '*' + text + '*';
 	},
 
 	GetUserById: function (client, userID) {
@@ -30,13 +30,13 @@ module.exports = {
 	},
 
 	DecodeUserId: function (encodedUserId) {
-		return encodedUserId.replace("<@!", "").replace(">", "");
+		return encodedUserId.replace('<@!', '').replace('>', '');
 	},
 
 	JoinAndPlayAudio: function (channel, audioPath) {
 		channel.join().then((connection) => {
 			const dispatcher = connection.play(audioPath, { volume: 0.2 });
-			dispatcher.on("speaking", (status) => {
+			dispatcher.on('speaking', (status) => {
 				if (status === 0) {
 					connection.disconnect();
 				}

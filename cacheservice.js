@@ -1,4 +1,4 @@
-const NodeCache = require("node-cache");
+const NodeCache = require('node-cache');
 
 class Cache {
   constructor(ttlSeconds) {
@@ -25,7 +25,7 @@ class Cache {
     this.cache.del(keys);
   }
 
-  delStartWith(startStr = "") {
+  delStartWith(startStr = '') {
     if (!startStr) {
       return;
     }
