@@ -6,11 +6,13 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "chalk": "^2.4.2",
+    "cheerio": "^1.0.0-rc.3",
     "dateformat": "^3.0.3",
     "discord.js": "^12.1.1",
     "lodash": "^4.17.19",
     "myanimelists": "^1.0.2",
-    "node-cache": "^5.1.2"
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
   "scripts": {

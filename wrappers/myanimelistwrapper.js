@@ -1,8 +1,8 @@
 const {
 	getInfoFromName,
 	searchResultsWhereNameAndType,
-} = require("myanimelists");
-const CacheService = require("../cacheservice");
+} = require('myanimelists');
+const CacheService = require('../cacheservice');
 const cache = new CacheService({ stdTTL: 0, maxKeys: 100 });
 
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
 		const key = `getMangaFromName${query}`;
 		return cache
 			.get(key, () =>
-				searchResultsWhereNameAndType(query, "manga").then((info) => {
+				searchResultsWhereNameAndType(query, 'manga').then((info) => {
 					return info;
 				})
 			)
