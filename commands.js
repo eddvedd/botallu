@@ -141,7 +141,9 @@ module.exports = {
             message.channel.send('Removed ' + user + ' from Ready');
         } else {
             message.channel.send(
-                'bot allu slaps ' + user + ' around a bit with a large trout'
+                'bot allu slaps ' +
+                    message.author.toString() +
+                    ' around a bit with a large trout'
             );
         }
     },
