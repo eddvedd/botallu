@@ -418,6 +418,12 @@ module.exports = {
     },
 
     ChessOpenings: function (message) {
-        chess.getOpenings().then((result) => message.reply(result.join('\n')));
+        //chess.getOpenings().then((result) => message.reply(result.join('\n')));
+        //chess.getOpenings().then((result) => console.log(result));
+        chess
+            .getOpenings()
+            .then((result) =>
+                result.forEach((opening) => message.channel.send(opening))
+            );
     },
 };
