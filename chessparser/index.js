@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const Scraper = require('../scraper');
+const Discord = require('discord.js');
 const scraper = new Scraper();
 
 class ChessParser {
@@ -10,13 +11,34 @@ class ChessParser {
 				const $ = cheerio.load(body);
 				var list = [];
 				$('.openings-game-block').each(function (i, item) {
-					list.push($(item).attr('href'));
+					var name = $(item).attr('title');
+					var link = $(item).attr('href');
+					var imgsrc = $(item).find('img').attr('data-src');
+					var opening = new Opening(name, link, imgsrc);
+					list.push(opening.MessageEmbed());
 				});
 				return list;
 			});
 	}
 }
 
-//TODO: search, split results in opening move, respond with picture, name and link
+class Opening {
+	constructor(name, href, imgsrc) {
+		this.name = name;
+		this.href = href;
+		this.imgsrc = imgsrc;
+	}
+
+	MessageEmbed() {
+		const messageEmbed = new Discord.MessageEmbed()
+			.setColor('#0099ff')
+			.setTitle(`${this.name}`)
+			.setURL(`${this.href}`)
+			.setThumbnail(`${this.imgsrc}`);
+		return messageEmbed;
+	}
+}
+
+//TODO: opening search, split results in opening move
 
 module.exports = ChessParser;
