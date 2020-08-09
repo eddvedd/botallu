@@ -15,7 +15,7 @@ class ChessParser {
 					var link = $(item).attr('href');
 					var imgsrc = $(item).find('img').attr('data-src');
 					var opening = new Opening(name, link, imgsrc);
-					list.push(opening.MessageEmbed());
+					list.push(opening.AsMessageEmbed());
 				});
 				return list;
 			});
@@ -29,13 +29,12 @@ class Opening {
 		this.imgsrc = imgsrc;
 	}
 
-	MessageEmbed() {
-		const messageEmbed = new Discord.MessageEmbed()
+	AsMessageEmbed() {
+		return new Discord.MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle(`${this.name}`)
 			.setURL(`${this.href}`)
 			.setThumbnail(`${this.imgsrc}`);
-		return messageEmbed;
 	}
 }
 
