@@ -124,6 +124,9 @@ module.exports = {
 			if (message.content === '!openings') {
 				command.ChessOpenings(message);
 			}
+			if (message.content.startsWith('!opening ')) {
+				command.ChessOpening(message);
+			}
 		} else {
 			command.Alluception(message);
 		}
