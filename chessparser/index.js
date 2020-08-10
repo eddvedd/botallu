@@ -80,8 +80,7 @@ class ChessParser {
 			var name = $("meta[property='og:title']")
 				.attr('content')
 				.replace(' - Chess Openings', '');
-			var opening = new Opening(name, link, imgsrc);
-			return opening;
+			return new Opening(name, link, imgsrc);
 		});
 	}
 }
@@ -102,6 +101,6 @@ class Opening {
 	}
 }
 
-//TODO: opening search, split results in opening move
+//TODO: split results in opening move
 
 module.exports = ChessParser;
