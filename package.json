@@ -12,7 +12,7 @@
     "lodash": "^4.17.19",
     "myanimelists": "^1.0.2",
     "node-cache": "^5.1.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
   "scripts": {
